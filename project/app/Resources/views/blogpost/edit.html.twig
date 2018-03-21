@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit blog{% endblock %}
+
+{% block body %}
+    <div id="container">
+        <h1>Blogpost edit</h1>
+
+        {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+            <input class="btn btn-outline-primary" type="submit" value="Edit" />
+        {{ form_end(edit_form) }}
+
+        <ul>
+            <li>
+                <a href="{{ path('blog_admin_index') }}">
+                    <button class="btn btn-outline-primary">Back to the list</button>
+                </a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                    <input class="btn btn-outline-primary" type="submit" value="Delete">
+                {{ form_end(delete_form) }}
+            </li>
+        </ul>
+    </div>
+{% endblock %}

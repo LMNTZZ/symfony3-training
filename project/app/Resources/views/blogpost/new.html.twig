@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create blog{% endblock %}
+
+{% block body %}
+    <div id="container">
+        <h1>Blogpost creation</h1>
+
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input class="btn btn-outline-primary" type="submit" value="Create" />
+        {{ form_end(form) }}
+
+        <ul>
+            <li>
+                <a href="{{ path('blog_admin_index') }}">
+                    <button class="btn btn-outline-primary">Back to the list</button>
+                </a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog index{% endblock %}
+
+{% block body %}
+    <div id="container">
+        <h1>Blogpost list</h1>
+
+        <table class="table-bordered table-active">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Body</th>
+                    <th>Publicationdate</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for blogPost in blogPosts %}
+                <tr>
+                    <td><a class="text-primary" {{ path('blog_admin_show', { 'id': blogPost.id }) }}">{{ blogPost.id }}</a></td>
+                    <td>{{ blogPost.title }}</td>
+                    <td>{{ blogPost.body }}</td>
+                    <td>{% if blogPost.publicationDate %}{{ blogPost.publicationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('blog_admin_show', { 'id': blogPost.id }) }}">
+                                    <button class="btn btn-block btn-outline-primary">show</button>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('blog_admin_edit', { 'id': blogPost.id }) }}">
+                                    <button class="btn btn-block btn-outline-primary">edit</button>
+                                </a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <ul>
+            <li>
+                <a href="{{ path('blog_admin_new') }}">
+                    <button class="btn btn-outline-secondary">Create a new blogPost</button>
+                </a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hobby page{% endblock %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+
+            <article>
+                <h2 class="text-info">Hobby's</h2>
+                <section>
+                    <p class="text-primary">Mijn hobby's zijn:</p>
+                        <ul>
+                            <li class="text-success"><a href="{{ path('hobbyDetailPage', {'hobby': 'running'}) }}">Running</a></li>
+                            <li class="text-success"><a href="{{ path('hobbyDetailPage', {'hobby': 'cycling'}) }}">Cycling</a></li>
+                            <li class="text-success">Drawing</li>
+                            <li class="text-success">Travelling</li>
+                        </ul>
+                </section>
+            </article>
+
+        </div>
+    </div>
+{% endblock %}
