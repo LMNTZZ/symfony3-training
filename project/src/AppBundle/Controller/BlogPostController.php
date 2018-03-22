@@ -61,9 +61,9 @@ class BlogPostController extends Controller
      * Finds and displays a blogPost entity.
      *
      * @Route("/{id}", name="blog_admin_show")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function showAction(BlogPost $blogPost)
+    public function showAction(Request $request, BlogPost $blogPost)
     {
         $deleteForm = $this->createDeleteForm($blogPost);
 

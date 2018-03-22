@@ -34,5 +34,18 @@
                 </a>
             </li>
         </ul>
+
+        <h3>Post a comment</h3>
+        {{ form_start(comment_form) }}
+
+        {{ form_end(comment_form) }}
+
+        <h3>Comments</h3>
+        <table class="table-bordered table-default">
+            {% for comment in comments %}
+                <tr><td>{{ comment.comment }}</td></tr>
+                <tr><td id="comment-name">{{ comment.name }}</td></tr>
+            {% endfor %}
+        </table>
     </div>
 {% endblock %}
