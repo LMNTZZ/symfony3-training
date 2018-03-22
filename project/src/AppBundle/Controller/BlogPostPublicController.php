@@ -5,6 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\BlogPost;
 use AppBundle\Entity\Comment;
 use AppBundle\Form\CommentType;
+use AppBundle\Service\BlogPostService;
+use AppBundle\Service\CommentService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -20,6 +22,15 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class BlogPostPublicController extends Controller
 {
+    private $blogPostService;
+    private $commentService;
+
+    public function __construct(BlogPostService $blogPostService, CommentService $commentService)
+    {
+        $this->blogPostService = $blogPostService;
+        $this->commentService = $commentService;
+    }
+
     /**
      * Lists all blogPost entities.
      *
@@ -28,9 +39,7 @@ class BlogPostPublicController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $blogPosts = $em->getRepository('AppBundle:BlogPost')->findAll();
+        $blogPosts = $this->blogPostService->fetchAllPosts();
 
         return $this->render('blogpublic/index.html.twig', array(
             'blogPosts' => $blogPosts,
@@ -51,9 +60,7 @@ class BlogPostPublicController extends Controller
         $commentForm->handleRequest($request);
         if ($commentForm->isSubmitted() && $commentForm->isValid()) {
             $comment = $commentForm->getData();
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($comment);
-            $entityManager->flush();
+            $this->commentService->persist($comment);
 
             return $this->redirectToRoute('blog_show', ['id' => $blogPost->getId()]);
         }
@@ -68,8 +75,7 @@ class BlogPostPublicController extends Controller
 
     public function recentpostsAction()
     {
-        $repository = $this->getDoctrine()->getRepository('AppBundle:BlogPost');
-        $blogPosts = $repository->findBy([], [], 5, 0);
+        $blogPosts = $this->blogPostService->fetchRecentPosts();
         return $this->render('blogpublic/recentposts.html.twig', ['blogPosts' => $blogPosts]);
     }
 
