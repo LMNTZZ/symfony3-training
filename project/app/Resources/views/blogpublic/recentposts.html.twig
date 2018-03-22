@@ -1,0 +1,8 @@
+<div id="container">
+    <h4>Recent blog posts</h4>
+    <ul>
+        {% for blogPost in blogPosts %}
+            <li><a href="{{ path('blog_show', {'id':blogPost.id}) }}">{{ blogPost.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>

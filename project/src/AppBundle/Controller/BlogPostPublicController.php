@@ -66,4 +66,11 @@ class BlogPostPublicController extends Controller
 
     }
 
+    public function recentpostsAction()
+    {
+        $repository = $this->getDoctrine()->getRepository('AppBundle:BlogPost');
+        $blogPosts = $repository->findBy([], [], 5, 0);
+        return $this->render('blogpublic/recentposts.html.twig', ['blogPosts' => $blogPosts]);
+    }
+
 }

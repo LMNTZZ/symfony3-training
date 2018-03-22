@@ -20,7 +20,7 @@ button, input[type='submit'] {
 /* ID */
 
 #container {
-    margin: 50px;
+    margin: 25px 50px;
 }
 
 #comment-name {

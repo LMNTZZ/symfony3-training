@@ -10,6 +10,8 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        {% include('navigation.html.twig') %}
+        {{ render(controller('AppBundle:BlogPostPublic:recentposts')) }}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

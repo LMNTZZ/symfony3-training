@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class BlogPost
 {
+
     /**
      * @var int
      *
@@ -146,6 +147,11 @@ class BlogPost
     public function getPublicationDate()
     {
         return $this->publicationDate;
+    }
+
+    public function __construct()
+    {
+        $this->publicationDate = new \DateTime('now');
     }
 }
 
