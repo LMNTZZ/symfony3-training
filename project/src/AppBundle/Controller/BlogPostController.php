@@ -52,7 +52,7 @@ class BlogPostController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $this->blogPostService->persist($blogPost);
 
-            return $this->redirectToRoute('blog_admin_show', array('id' => $blogPost->getId()));
+            return $this->redirectToRoute('blog_admin_index', array('id' => $blogPost->getId()));
         }
 
         return $this->render('blogpost/new.html.twig', array(
