@@ -43,8 +43,13 @@
         <h3>Comments</h3>
         <table class="table-bordered table-default">
             {% for comment in comments %}
-                <tr><td>{{ comment.comment }}</td></tr>
-                <tr><td id="comment-name">{{ comment.name }}</td></tr>
+                <tr>
+                    <td colspan="2">{{ comment.comment }}</td>
+                </tr>
+                <tr>
+                    <td id="comment-small">{{ comment.name }}</td>
+                    <td id="comment-small">{{ comment.publicationDate | date('d-m-Y H:i') }}</td>
+                </tr>
             {% endfor %}
         </table>
     </div>

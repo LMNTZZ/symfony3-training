@@ -117,5 +117,33 @@ class Comment
     {
         return $this->comment;
     }
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="publication_date", type="datetime")
+    !*/
+    private $publicationDate;
+
+    /**
+     * @return \DateTime
+     */
+    public function getPublicationDate()
+    {
+        return $this->publicationDate;
+    }
+
+    /**
+     * @param \DateTime $publicationDate
+     */
+    public function setPublicationDate($publicationDate)
+    {
+        $this->publicationDate = $publicationDate;
+    }
+
+    public function __construct()
+    {
+        $this->publicationDate = new \DateTime('now');
+    }
 }
 
