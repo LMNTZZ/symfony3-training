@@ -12,9 +12,20 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('blog_index') }}">Blog</a>
             </li>
+            {% if is_granted('ROLE_ADMIN') %}
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('blog_admin_index') }}">Blog admin</a>
             </li>
+            {% endif %}
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('logout') }}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('blog_admin_index') }}">Log in</a>
+            </li>
+            {% endif %}
         </ul>
     </div>
 </nav>
