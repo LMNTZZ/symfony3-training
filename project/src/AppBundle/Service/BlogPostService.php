@@ -4,6 +4,8 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\BlogPost;
 use AppBundle\Repository\BlogPostRepository;
+use AppBundle\Service\Exception\ConnectivityException;
+use Doctrine\DBAL\DBALException;
 use Doctrine\ORM\EntityManagerInterface;
 
 class BlogPostService
@@ -22,7 +24,11 @@ class BlogPostService
 
     public function fetchAllPosts()
     {
-        return $this->repository->findAll();
+        try {
+            return $this->repository->findAll();
+        } catch (DBALException $e) {
+            throw new ConnectivityException($e->getMessage());
+        }
     }
 
     public function fetchRecentPosts()
